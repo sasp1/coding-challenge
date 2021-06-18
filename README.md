@@ -6,7 +6,7 @@ Here at Weld we use [NestJS](https://nestjs.com/) for our applications. So this 
 Fork this repository and create your own repository to get started.
 
 ## Challenge
-One of our customers wants us to help them build a pipeline for Hubspot. And they want us to setup a new data-pipeline for them to get information out and into their current data-warehouse.
+One of our customers wants us to help them build a pipeline for an API (select whichever you want from [Public APIs](https://github.com/public-apis/public-apis)). And they want us to setup a new data-pipeline for them to get information out and into their current data-warehouse.
 
 To accomplish this you will build two services:
 - **Data-streams**: Our API that can receive calls and issue commands to **worker**. This service also stores any information that our customer wants to fetch.
@@ -21,7 +21,9 @@ To accomplish this you will build two services:
 - Make an endpoint on **data-streams** that can stop the data fetching on **worker**.
 
 ## How we evaluate
-- We understand that this can be **time consuming**. If you are short on time leave something out. But be sure to tell us your approach to the problem in the documentation.
+The test is solely for you to show techniques and design patterns you normally use. Once the techniques and design patterns have been demonstrated then that is enough. No neeed for additional boilerplate. Just include a future work section in your answer and we will include questions in the technical interview.
+
+- We understand that this can be **time consuming**. If you are short on time - then leave something out. But be sure to tell us your approach to the problem in the documentation.
 - A documented answer that explains your approach, short-comings, how-to-run and future work.
 - A working solution. Preferably with some tests to give us an idea of how you write tests (you don't need to put it all under test).
 - Reliability is very important when dealing with data-pipelines. So any measures you can add to keep the data-flowing will be appreciated.
