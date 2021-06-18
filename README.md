@@ -10,12 +10,12 @@ One of our customers wants us to help them build a pipeline for an API (select w
 
 To accomplish this you will build two services:
 - **Data-streams**: Our API that can receive calls and issue commands to **worker**. This service also stores any information that our customer wants to fetch.
-- **Worker:** Fetches the data from Hubspot. Makes any transformations you see fit. And sends it back to **data-streams** for storage.
+- **Worker:** Fetches the data from external API. Makes any transformations you see fit. And sends it back to **data-streams** for storage.
 
 ### Steps in challenge
 - Configure a message protocol between the two services. You can get inspiration from the [nestjs docs.](https://docs.nestjs.com/microservices/basics) Choose which ever you want but tell us why in your answer.
 - Create an endpoint on **data-streams** that tells **worker** to start fetching data on an interval (every 5 minutes).
-- Setup an [http module](https://docs.nestjs.com/techniques/http-module) that **worker** can use to communicate with Hubspot. You can setup a [Hubspot developer account](https://developers.hubspot.com/) or mock the data. Depending on what you prefer.
+- Setup an [http module](https://docs.nestjs.com/techniques/http-module) that **worker** can use to communicate with the external API.
 - Send the data and store the results on **data-streams** using internal communication protocol.
 - Make an endpoint on **data-streams** that can fetch the data stored on **data-streams**. Use whatever storage you see fit but tell us why you chose it.
 - Make an endpoint on **data-streams** that can stop the data fetching on **worker**.
