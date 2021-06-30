@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { WorkerController } from './worker.controller';
 import { WorkerService } from './worker.service';
 import { ScheduleModule } from '@nestjs/schedule';
@@ -8,6 +8,7 @@ dotenv.config();
 
 @Module({
   imports: [
+    HttpModule,
     ScheduleModule.forRoot(),
     ClientsModule.register([
       {
