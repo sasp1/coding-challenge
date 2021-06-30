@@ -31,11 +31,7 @@ export class AppController {
 
   @Get("artwork")
   async getArtworkData(){
-    if (!this.artworkData) {
-      throw new NotFoundException('No artwork data present');
-    }
-
-    return this.artworkData;
+    return this.appService.getArtworkData();
   }
 
   @MessagePattern('art-data')
@@ -43,8 +39,7 @@ export class AppController {
     const channel = context.getChannelRef();
     const msg = context.getMessage();
     channel.ack(msg);
-
-    this.artworkData = JSON.parse(data);
+    this.appService.addArtworkData(data);
   }
 
 }
