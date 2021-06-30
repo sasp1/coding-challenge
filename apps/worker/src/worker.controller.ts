@@ -8,4 +8,12 @@ export class WorkerController {
   getHello(): string {
     return this.workerService.getHello();
   }
+
+  startWorker() {
+
+  }
+
+  countWorkers() {
+    return undefined;
+  }
 }

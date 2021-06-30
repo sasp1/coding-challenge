@@ -15,8 +15,9 @@ describe('WorkerController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(workerController.getHello()).toBe('Hello World!');
+    it('Should add worker', () => {
+      workerController.startWorker();
+      expect(workerController.countWorkers()).toBe(1);
     });
   });
 });
