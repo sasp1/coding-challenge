@@ -20,6 +20,7 @@ describe('WorkerController', () => {
   describe('root', () => {
     it('Should add worker', () => {
       workerController.startWorker();
+
       expect(workerController.countWorkers()).toBe(1);
     });
 
