@@ -10,10 +10,10 @@ export class WorkerController {
   }
 
   startWorker() {
-
+    this.workerService.startWorker();
   }
 
   countWorkers() {
-    return undefined;
+    return this.workerService.countWorkers();
   }
 }
