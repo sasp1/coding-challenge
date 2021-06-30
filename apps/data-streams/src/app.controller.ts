@@ -1,10 +1,11 @@
-import { BadRequestException, Controller, Delete, Get, Post } from '@nestjs/common';
+import { BadRequestException, Controller, Delete, Get, NotFoundException, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Ctx, MessagePattern, Payload, RmqContext } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+  artworkData : any
 
   @Post('workers')
   async startWorker() {
@@ -28,10 +29,22 @@ export class AppController {
     }
   }
 
-  @MessagePattern('art-data')
-  async getArtworkData(@Payload() data) {
+  @Get("artwork")
+  async getArtworkData(){
+    if (!this.artworkData) {
+      throw new NotFoundException('No artwork data present');
+    }
 
-    console.log(data);
+    return this.artworkData;
+  }
+
+  @MessagePattern('art-data')
+  async receiveArtworkData(@Ctx() context: RmqContext, @Payload() data) {
+    const channel = context.getChannelRef();
+    const msg = context.getMessage();
+    channel.ack(msg);
+
+    this.artworkData = JSON.parse(data);
   }
 
 }
