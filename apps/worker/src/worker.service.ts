@@ -25,4 +25,13 @@ export class WorkerService {
   private fetchData() {
 
   }
+
+  removeWorker() {
+    if (this.schedulerRegistry.getCronJobs().size == 0) {
+      throw new RpcException({ type: 400, msg: 'No worker present' });
+    }
+
+    this.schedulerRegistry.deleteCronJob('worker-job');
+
+  }
 }

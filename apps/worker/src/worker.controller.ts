@@ -13,6 +13,11 @@ export class WorkerController {
     this.workerService.startWorker();
   }
 
+  @MessagePattern('removeWorker')
+  removeWorker(@Ctx() context: RmqContext) {
+    this.workerService.removeWorker();
+  }
+
   countWorkers() {
     return this.workerService.countWorkers();
   }

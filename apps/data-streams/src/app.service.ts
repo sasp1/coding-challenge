@@ -15,4 +15,8 @@ export class AppService {
    startWorker() : Observable<string>{
     return this.clientProxy.send<string>('startWorker', {});
   }
+
+  removeWorker() {
+    return this.clientProxy.send<string>('removeWorker', {});
+  }
 }

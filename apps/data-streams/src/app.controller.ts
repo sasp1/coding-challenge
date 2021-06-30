@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Post } from '@nestjs/common';
+import { BadRequestException, Controller, Delete, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -12,6 +12,17 @@ export class AppController {
     } catch (e) {
       if (e.type == 400) {
         throw new BadRequestException('Worker already created');
+      }
+    }
+  }
+
+  @Delete('workers')
+  async removeWorker() {
+    try {
+      await this.appService.removeWorker().toPromise();
+    } catch (e) {
+      if (e.type == 400) {
+        throw new BadRequestException('No workers present');
       }
     }
   }
