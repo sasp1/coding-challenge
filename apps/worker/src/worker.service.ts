@@ -9,7 +9,7 @@ export class WorkerService {
   }
 
   startWorker() {
-    const job = new CronJob(`${5} * * * * *`, this.fetchData);
+    const job = new CronJob(`*/5 * * * * *`, () => this.fetchData());
 
     if (this.schedulerRegistry.getCronJobs().size > 0) {
       throw new RpcException({ type: 400, msg: 'worker job already added' });
@@ -23,15 +23,13 @@ export class WorkerService {
   }
 
   private fetchData() {
-
+    console.log("fetching data");
   }
 
   removeWorker() {
     if (this.schedulerRegistry.getCronJobs().size == 0) {
       throw new RpcException({ type: 400, msg: 'No worker present' });
     }
-
     this.schedulerRegistry.deleteCronJob('worker-job');
-
   }
 }
