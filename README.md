@@ -1,3 +1,33 @@
+# Solution
+## Approach
+Solution TLDR:
+- Test driven approach
+- RabbitMQ for internal communication
+- Worker fetches data from [api.artic.edu](https://api.artic.edu/) API
+- MongoDB for data storage 
+- Mongoose for data validation
+
+The solution has been created mostly test driven, by defining e2e tests as well as integration tests.
+In the solution I've set up the two microservices. App MS serves as the external API, which allows external users to
+start a worker that fetches data. It also allows users to stop the worker from fetching data.
+If a worker is started it fetches artwork data from the [api.artic.edu](https://api.artic.edu/) API every 5 second and then 
+sends it back to App MS with RabbitMQ protocol, where the data is stored in local MongoDB database. 
+
+In the solution I have used various design patterns to make the code cleaner and easier maintainable
+but I have mostly just followed the standard NesJS convention/design pattern which divides code into controllers and services 
+and allows for easy testing with dependency injection. 
+
+## How to run
+Install mongodb and rabbitMQ
+Start two microservices with ``nest start`` and ``nest start worker``
+
+## Future improvements
+More tests should be added to ensure stability of the two microservices. 
+The solution could also be containerized to allow for faster startup and avoid having to manually install dependencies (mongodb and rabbitmq)
+To make sure the pipeline is stable I would also store references to workers in a database such that in case the server needs to restart
+it can start up the active workers again even when memory is cleared. This would also allow users to create multiple workers.
+
+
 # Welcome to Welds coding-challenge
 
 ## Introduction

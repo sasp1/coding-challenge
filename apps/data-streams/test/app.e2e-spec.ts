@@ -16,10 +16,10 @@ describe('AppController (e2e)', () => {
   });
 
   describe('/workers (POST)', () => {
-    it('should return 200', () => {
+    it('should return 201', () => {
       return request(app.getHttpServer())
         .post('/workers')
-        .expect(200)
+        .expect(201)
     });
 
   });
